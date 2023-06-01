@@ -15,5 +15,4 @@ Node Express Server. Api for a dashboard.
 
 
 ## Swagger
-
-* Api documentation can be checked on http://localhost:9000/api-docs
+* If everything is up and running, then Api documentation can be checked on http://localhost:9000/api-docs
