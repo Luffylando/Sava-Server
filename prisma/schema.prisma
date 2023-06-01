@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  ArticleID Int @id @default(autoincrement())
+
+  Title    String
+  Reporter String?
+  Body     String?
+
+  Category   Category? @relation(fields: [CategoryID], references: [CategoryID], onDelete: Cascade)
+  CategoryID Int?
+
+  Tags Tag[]
+
+  PublishDate DateTime @default(now())
+
+  @@map("articles")
+}
+
+model Category {
+  CategoryID Int       @id @default(autoincrement())
+  Title      String
+  Articles   Article[]
+
+  @@map("categories")
+}
+
+model Tag {
+  TagID Int    @id @default(autoincrement())
+  Title String
+
+  Articles Article[]
+}
